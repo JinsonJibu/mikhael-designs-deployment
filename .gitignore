@@ -1,0 +1,16 @@
+# .gitignore content
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Terraform state
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Docker/Kubernetes
+/output/
+
+# Azure files
+*.kubeconfig
