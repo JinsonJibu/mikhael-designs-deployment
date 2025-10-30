@@ -1,8 +1,9 @@
 # .gitignore content
-# Python environment
+# Python environment and Logs
 .venv/
 __pycache__/
 *.pyc
+*.log
 
 # Terraform state
 .terraform/
@@ -11,6 +12,8 @@ __pycache__/
 
 # Docker/Kubernetes
 /output/
-
-# Azure files
 *.kubeconfig
+
+# OS generated files
+.DS_Store
+Thumbs.db

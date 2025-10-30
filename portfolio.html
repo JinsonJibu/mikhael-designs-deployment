@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>✨ Mikhael Designs</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('portfolio') }}">Portfolio</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Our Latest Projects</h2>
+        {% for item in items %}
+            <div class="design-item">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p class="price">Quote starts from: ${{ item.price }}</p>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+</body>
+</html>

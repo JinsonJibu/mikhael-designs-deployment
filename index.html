@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>✨ Mikhael Designs</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('portfolio') }}">Portfolio</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Crafting Spaces, Defining Style.</h2>
+        <p>We specialize in bespoke interior and architectural designs, transforming visions into reality.</p>
+        <button onclick="window.location.href='{{ url_for('portfolio') }}'">View Our Work</button>
+    </div>
+</body>
+</html>
