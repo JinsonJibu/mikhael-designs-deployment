@@ -1,4 +1,3 @@
-# deployment.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,6 +5,7 @@ metadata:
   labels:
     app: mikhael-designs-app
 spec:
+  # Maintain 2 running instances
   replicas: 2
   selector:
     matchLabels:
@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
       - name: flask-container
-        # IMPORTANT: Use YOUR unique ACR login server name here
-        image: mikhaeldesignshpt001.azurecr.io/mikhael-designs:v1
+        # MUST use the working image tag
+        image: mikhaeldesignshpt001.azurecr.io/mikhael-designs:v2 
         ports:
         - containerPort: 5000
-      # This ensures AKS can pull from your private ACR
+      # Reference the Secret needed for ACR authentication
       imagePullSecrets:
       - name: acr-pull-secret

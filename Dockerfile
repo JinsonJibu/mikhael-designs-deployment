@@ -1,21 +1,16 @@
-# Corrected Dockerfile Content
+# Dockerfile content
 
 FROM python:3.12-slim
-
-# Set the primary working directory
 WORKDIR /app
 
-# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# CRITICAL FIX: Copy the application code directly into the working directory (/app)
-# This places app/app.py directly at /app/app.py inside the container.
+# FIX: Copies the application code from 'app/' on the host directly to '/app/' in the container.
+# This ensures the main app.py file is accessible at /app/app.py
 COPY app/ /app/ 
 
-# Expose the port
 EXPOSE 5000
 
-# CRITICAL FIX: Run the Flask app using the simple, correct path
-# The file is now correctly located at /app/app.py
+# FIX: Executes the Flask application using the simple, correct path.
 CMD ["python", "app.py"]

@@ -1,12 +1,13 @@
-# service.yml
 apiVersion: v1
 kind: Service
 metadata:
   name: mikhael-designs-service
 spec:
-  type: LoadBalancer # Exposes the service with a public IP
+  # Type LoadBalancer requests a public IP from Azure
+  type: LoadBalancer 
   ports:
-  - port: 80         # External HTTP port
-    targetPort: 5000 # Internal Flask container port
+  - protocol: TCP
+    port: 80         # Port exposed to the public internet
+    targetPort: 5000 # Port the Flask container is listening on (from app.py)
   selector:
     app: mikhael-designs-app
