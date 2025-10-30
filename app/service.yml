@@ -1,0 +1,12 @@
+# service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mikhael-designs-service
+spec:
+  type: LoadBalancer # Exposes the service with a public IP
+  ports:
+  - port: 80         # External HTTP port
+    targetPort: 5000 # Internal Flask container port
+  selector:
+    app: mikhael-designs-app

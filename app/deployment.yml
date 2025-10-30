@@ -1,0 +1,26 @@
+# deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mikhael-designs-deployment
+  labels:
+    app: mikhael-designs-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mikhael-designs-app
+  template:
+    metadata:
+      labels:
+        app: mikhael-designs-app
+    spec:
+      containers:
+      - name: flask-container
+        # IMPORTANT: Use YOUR unique ACR login server name here
+        image: mikhaeldesignshpt001.azurecr.io/mikhael-designs:v1
+        ports:
+        - containerPort: 5000
+      # This ensures AKS can pull from your private ACR
+      imagePullSecrets:
+      - name: acr-pull-secret
