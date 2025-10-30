@@ -1,26 +1,21 @@
-# Dockerfile content
+# Corrected Dockerfile Content
 
-# Use an official lightweight Python runtime as a parent image
 FROM python:3.12-slim
 
-# Set the working directory in the container
+# Set the primary working directory
 WORKDIR /app
 
-# Copy the requirements file into the container and install dependencies
-# We use COPY --chown to set ownership for security best practices
-COPY --chown=root:root requirements.txt .
+# Copy requirements and install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire application code (app.py, templates, static) into the container
-# Use the correct subdirectory path
-COPY app/ /app/app
+# CRITICAL FIX: Copy the application code directly into the working directory (/app)
+# This places app/app.py directly at /app/app.py inside the container.
+COPY app/ /app/ 
 
-# Set environment variable (optional but good practice for Flask)
-ENV FLASK_APP=app/app.py
-
-# Expose the port the app runs on
+# Expose the port
 EXPOSE 5000
 
-# Run the Flask app when the container starts
-# The command runs the Python file directly from the correct path
-CMD ["python", "app/app.py"]
+# CRITICAL FIX: Run the Flask app using the simple, correct path
+# The file is now correctly located at /app/app.py
+CMD ["python", "app.py"]
